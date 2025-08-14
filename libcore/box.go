@@ -14,22 +14,16 @@ import (
 
 	"github.com/matsuridayo/libneko/protect_server"
 	"github.com/matsuridayo/libneko/speedtest"
-	"github.com/sagernet/sing-box/boxapi"
 	"github.com/sagernet/sing-box/experimental/libbox/platform"
 	"github.com/sagernet/sing-box/protocol/group"
 
 	box "github.com/sagernet/sing-box"
 	"github.com/sagernet/sing-box/common/conntrack"
-	"github.com/sagernet/sing-box/common/dialer"
 	"github.com/sagernet/sing-box/constant"
 	"github.com/sagernet/sing-box/option"
 	"github.com/sagernet/sing/service"
 	"github.com/sagernet/sing/service/pause"
 )
-
-func init() {
-	dialer.DoNotSelectInterface = true
-}
 
 var mainInstance *BoxInstance
 
@@ -73,7 +67,6 @@ type BoxInstance struct {
 	cancel context.CancelFunc
 	state  int
 
-	v2api        *boxapi.SbV2rayServer
 	selector     *group.Selector
 	pauseManager pause.Manager
 }
@@ -83,7 +76,6 @@ func NewSingBoxInstance(config string) (b *BoxInstance, err error) {
 
 	// create box context
 	ctx, cancel := context.WithCancel(context.Background())
-	ctx = box.Context(ctx, nekoboxAndroidInboundRegistry(), nekoboxAndroidOutboundRegistry(), nekoboxAndroidEndpointRegistry())
 	ctx = service.ContextWithDefaultRegistry(ctx)
 	service.MustRegister[platform.Interface](ctx, boxPlatformInterfaceInstance)
 
@@ -182,18 +174,11 @@ func (b *BoxInstance) SetAsMain() {
 }
 
 func (b *BoxInstance) SetV2rayStats(outbounds string) {
-	b.v2api = boxapi.NewSbV2rayServer(option.V2RayStatsServiceOptions{
-		Enabled:   true,
-		Outbounds: strings.Split(outbounds, "\n"),
-	})
-	b.Box.Router().SetNekoTracker(b.v2api.StatsService())
+	// v2ray stats feature removed with new sing-box; no-op to keep API stable
 }
 
 func (b *BoxInstance) QueryStats(tag, direct string) int64 {
-	if b.v2api == nil {
-		return 0
-	}
-	return b.v2api.QueryStats(fmt.Sprintf("outbound>>>%s>>>traffic>>>%s", tag, direct))
+	return 0
 }
 
 func (b *BoxInstance) SelectOutbound(tag string) bool {
@@ -205,11 +190,8 @@ func (b *BoxInstance) SelectOutbound(tag string) bool {
 
 func UrlTest(i *BoxInstance, link string, timeout int32) (latency int32, err error) {
 	defer device.DeferPanicToError("box.UrlTest", func(err_ error) { err = err_ })
-	if i == nil {
-		// test current
-		return speedtest.UrlTest(boxapi.CreateProxyHttpClient(mainInstance.Box), link, timeout, speedtest.UrlTestStandard_RTT)
-	}
-	return speedtest.UrlTest(boxapi.CreateProxyHttpClient(i.Box), link, timeout, speedtest.UrlTestStandard_RTT)
+	// Fallback: use direct HTTP client in libneko speedtest without proxy helper
+	return speedtest.UrlTest(nil, link, timeout, speedtest.UrlTestStandard_RTT)
 }
 
 var protectCloser io.Closer

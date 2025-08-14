@@ -27,16 +27,16 @@ var boxPlatformInterfaceInstance platform.Interface = &boxPlatformInterfaceWrapp
 
 type boxPlatformInterfaceWrapper struct{}
 
+func (w *boxPlatformInterfaceWrapper) Initialize(networkManager adapter.NetworkManager) error {
+	return nil
+}
+
 func (w *boxPlatformInterfaceWrapper) ReadWIFIState() adapter.WIFIState {
 	state := strings.Split(intfBox.WIFIState(), ",")
 	return adapter.WIFIState{
 		SSID:  state[0],
 		BSSID: state[1],
 	}
-}
-
-func (w *boxPlatformInterfaceWrapper) Initialize(n adapter.NetworkManager) error {
-	return nil
 }
 
 func (w *boxPlatformInterfaceWrapper) UsePlatformAutoDetectInterfaceControl() bool {
@@ -110,8 +110,9 @@ func (w *boxPlatformInterfaceWrapper) UnderNetworkExtension() bool {
 	return false
 }
 
-func (w *boxPlatformInterfaceWrapper) ClearDNSCache() {
-}
+func (w *boxPlatformInterfaceWrapper) ClearDNSCache() {}
+
+func (w *boxPlatformInterfaceWrapper) SystemCertificates() []string { return nil }
 
 // process.Searcher
 
@@ -156,8 +157,7 @@ func (w *boxPlatformInterfaceWrapper) Write(p []byte) (n int, err error) {
 
 // 日志
 
-type boxPlatformLogWriterWrapper struct {
-}
+type boxPlatformLogWriterWrapper struct{}
 
 var boxPlatformLogWriter sblog.PlatformWriter = &boxPlatformLogWriterWrapper{}
 

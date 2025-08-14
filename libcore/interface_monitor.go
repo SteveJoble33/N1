@@ -11,6 +11,7 @@ import (
 // wtf
 
 type interfaceMonitor struct {
+	myInterface string
 }
 
 func (i *interfaceMonitor) Start() error {
@@ -45,5 +46,8 @@ func (i *interfaceMonitor) RegisterCallback(callback tun.DefaultInterfaceUpdateC
 	return nil
 }
 
-func (i *interfaceMonitor) UnregisterCallback(element *list.Element[tun.DefaultInterfaceUpdateCallback]) {
-}
+func (i *interfaceMonitor) UnregisterCallback(element *list.Element[tun.DefaultInterfaceUpdateCallback]) {}
+
+func (i *interfaceMonitor) RegisterMyInterface(interfaceName string) { i.myInterface = interfaceName }
+
+func (i *interfaceMonitor) MyInterface() string { return i.myInterface }
