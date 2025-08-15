@@ -18,7 +18,7 @@ fun SagerNet.cleanWebview() {
     var pathToClean = "app_webview"
     if (isBgProcess) pathToClean += "_$process"
     try {
-        val dataDir = filesDir.parentFile!!
+        val dataDir = filesDir.parentFile ?: return
         File(dataDir, "$pathToClean/BrowserMetrics").recreate(true)
         File(dataDir, "$pathToClean/BrowserMetrics-spare.pma").recreate(false)
     } catch (e: Exception) {
@@ -28,12 +28,12 @@ fun SagerNet.cleanWebview() {
 
 fun File.recreate(dir: Boolean) {
     if (parentFile?.isDirectory != true) return
-    if (dir && !isFile) {
-        if (exists()) deleteRecursively()
-        createNewFile()
-    } else if (!dir && !isDirectory) {
-        if (exists()) delete()
-        mkdir()
+    if (dir) {
+        if (exists() && isFile) delete()
+        if (!exists()) mkdirs()
+    } else {
+        if (exists() && isDirectory) deleteRecursively()
+        if (!exists()) createNewFile()
     }
 }
 

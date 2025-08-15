@@ -36,11 +36,11 @@ import io.nekohasekai.sagernet.ktx.getColorAttr
 
 open class SimpleMenuPreference
 @JvmOverloads constructor(
-    context: Context?,
+    context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = androidx.preference.R.attr.dropdownPreferenceStyle,
     defStyleRes: Int = 0
-) : DropDownPreference(context!!, attrs, defStyleAttr, defStyleRes) {
+) : DropDownPreference(context, attrs, defStyleAttr, defStyleRes) {
 
     private lateinit var mAdapter: SimpleMenuAdapter
 
