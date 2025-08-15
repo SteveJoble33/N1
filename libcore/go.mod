@@ -6,7 +6,7 @@ toolchain go1.23.6
 
 require (
 	github.com/logrusorgru/aurora v2.0.3+incompatible
-	github.com/matsuridayo/libneko v0.0.0-20240525015504-ede848c19b4b
+	github.com/matsuridayo/libneko v0.0.0-20240702024904-1c47a3af7199
 	github.com/matsuridayo/sing-box-extra v0.0.0-20250503064040-b75b0b79c7d3
 	github.com/miekg/dns v1.1.67
 	github.com/oschwald/maxminddb-golang v1.13.1
