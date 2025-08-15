@@ -239,6 +239,7 @@ fun buildConfig(
                 domain_strategy = genDomainStrategy(DataStore.resolveDestination)
                 sniff = needSniff
                 sniff_override_destination = needSniffOverride
+                udp_fragment = DataStore.udpFragment
             })
         }
 
@@ -386,6 +387,7 @@ fun buildConfig(
                                 currentOutbound["multiplex"] = muxObj.asMap()
                             }
                         }
+                        currentOutbound["udp_fragment"] = DataStore.udpFragment
                     }
                 }
 
@@ -444,25 +446,26 @@ fun buildConfig(
                         bean.finalAddress = LOCALHOST
                         bean.finalPort = mappingPort
 
-                        inbounds.add(Inbound_DirectOptions().apply {
-                            type = "direct"
-                            listen = LOCALHOST
-                            listen_port = mappingPort
-                            tag = "$chainTag-mapping-${proxyEntity.id}"
+                                        inbounds.add(Inbound_DirectOptions().apply {
+                    type = "direct"
+                    listen = LOCALHOST
+                    listen_port = mappingPort
+                    tag = "$chainTag-mapping-${proxyEntity.id}"
+                    udp_fragment = DataStore.udpFragment
 
-                            override_address = bean.serverAddress
-                            override_port = bean.serverPort
+                    override_address = bean.serverAddress
+                    override_port = bean.serverPort
 
-                            pastInboundTag = tag
+                    pastInboundTag = tag
 
-                            // no chain rule and not outbound, so need to set to direct
-                            if (index == profileList.lastIndex) {
-                                route.rules.add(Rule_DefaultOptions().apply {
-                                    inbound = listOf(tag)
-                                    outbound = TAG_DIRECT
-                                })
-                            }
+                    // no chain rule and not outbound, so need to set to direct
+                    if (index == profileList.lastIndex) {
+                        route.rules.add(Rule_DefaultOptions().apply {
+                            inbound = listOf(tag)
+                            outbound = TAG_DIRECT
                         })
+                    }
+                })
                     }
                 }
 

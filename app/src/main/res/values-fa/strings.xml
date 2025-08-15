@@ -434,6 +434,9 @@
     <string name="warp_generate">ایجاد پیکربندی</string>
     <string name="generating">در حال ایجاد...</string>
     <string name="tun_implementation">پیاده‌سازی TUN</string>
+    <string name="auto_import_configs">دریافت خودکار کانفیگ</string>
+    <string name="cleanup_bad_configs">حذف کانفیگ‌های خراب</string>
+    <string name="udp_fragment">تکه‌تکه‌سازی UDP</string>
     <string name="destination_override">بازنویسی مقصد</string>
     <string name="destination_override_summary">از دامنه ردیابی‌شده برای بازنویسی آدرس مقصد استفاده کنید، نه فقط برای مسیریابی.</string>
     <string name="resolve_destination">بررسی مقصد</string>

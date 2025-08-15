@@ -115,6 +115,7 @@ import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.zip.ZipInputStream
 import kotlin.collections.set
+import moe.matsuri.nb4a.AutoConfigImporter
 
 class ConfigurationFragment @JvmOverloads constructor(
     val select: Boolean = false, val selectedItem: ProxyEntity? = null, val titleRes: Int = 0
@@ -589,6 +590,16 @@ class ConfigurationFragment @JvmOverloads constructor(
 
             R.id.action_connection_url_test -> {
                 urlTest()
+            }
+            R.id.action_auto_import -> {
+                runOnLifecycleDispatcher {
+                    val importer = AutoConfigImporter(requireContext())
+                    importer.manualImport()
+                }
+            }
+            R.id.action_cleanup_bad_configs -> {
+                val importer = AutoConfigImporter(requireContext())
+                importer.cleanupBadConfigs()
             }
         }
         return true

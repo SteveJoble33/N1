@@ -566,4 +566,7 @@
     <string name="padding">Padding</string>
     <string name="network_change_reset_connections">Reset outbound connections when network changes</string>
     <string name="wake_reset_connections">Reset outbound connections when device wake from sleep</string>
+    <string name="auto_import_configs">Auto import configs</string>
+    <string name="cleanup_bad_configs">Cleanup bad configs</string>
+    <string name="udp_fragment">UDP Fragment</string>
 </resources>

@@ -36,6 +36,20 @@
     public static *** i(...);
 }
 
+# Strip custom Logs in release
+-assumenosideeffects class io.nekohasekai.sagernet.ktx.Logs {
+    public static void d(java.lang.String);
+    public static void d(java.lang.String, java.lang.Throwable);
+    public static void i(java.lang.String);
+    public static void i(java.lang.String, java.lang.Throwable);
+    public static void w(java.lang.String);
+    public static void w(java.lang.String, java.lang.Throwable);
+    public static void w(java.lang.Throwable);
+    public static void e(java.lang.String);
+    public static void e(java.lang.String, java.lang.Throwable);
+    public static void e(java.lang.Throwable);
+}
+
 # ini4j
 -keep public class org.ini4j.spi.** { <init>(); }
 

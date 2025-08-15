@@ -162,6 +162,7 @@ object DataStore : OnPreferenceDataStoreChangeListener {
     // protocol
 
     var globalAllowInsecure by configurationStore.boolean(Key.GLOBAL_ALLOW_INSECURE) { false }
+    var udpFragment by configurationStore.boolean(Key.UDP_FRAGMENT)
 
     // old cache, DO NOT ADD
 
