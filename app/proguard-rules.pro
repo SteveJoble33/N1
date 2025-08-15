@@ -25,7 +25,7 @@
 # SnakeYaml
 -keep class org.yaml.snakeyaml.** { *; }
 
--dontobfuscate
+-printmapping build/outputs/mapping/mapping.txt
 -keepattributes SourceFile
 
 -dontwarn java.beans.BeanInfo
