@@ -190,14 +190,16 @@ object ProfileManager {
                     name = app.getString(R.string.route_opt_block_quic),
                     port = "443",
                     network = "udp",
-                    outbound = -2
+                    outbound = -2,
+                    enabled = false // QUIC blocking غیرفعال به طور پیش‌فرض
                 )
             )
             createRule(
                 RuleEntity(
                     name = app.getString(R.string.route_opt_block_ads),
                     domains = "geosite:category-ads-all",
-                    outbound = -2
+                    outbound = -2,
+                    enabled = true // فعال‌سازی پیش‌فرض BlockADs
                 )
             )
             createRule(
@@ -210,6 +212,7 @@ object ProfileManager {
                             .joinToString("\n")
                     },
                     outbound = -2,
+                    enabled = true // فعال‌سازی پیش‌فرض Blockanalysis
                 )
             )
             val fuckedCountry = mutableListOf("cn:中国")
@@ -232,7 +235,8 @@ object ProfileManager {
                     RuleEntity(
                         name = app.getString(R.string.route_bypass_domain, displayCountry),
                         domains = "geosite:$country",
-                        outbound = -1
+                        outbound = -1,
+                        enabled = if (country == "ir") true else false // فعال‌سازی پیش‌فرض برای ایران
                     ), false
                 )
                 createRule(

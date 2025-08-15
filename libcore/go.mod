@@ -1,19 +1,24 @@
 module libcore
 
-go 1.23.1
+go 1.23.3
 
 toolchain go1.23.6
 
 require (
-	github.com/matsuridayo/libneko v0.0.0-20240702024904-1c47a3af7199
+	github.com/logrusorgru/aurora v2.0.3+incompatible
+	github.com/matsuridayo/libneko v0.0.0-20240525015504-ede848c19b4b
+	github.com/matsuridayo/sing-box-extra v0.0.0-20250503064040-b75b0b79c7d3
 	github.com/miekg/dns v1.1.67
 	github.com/oschwald/maxminddb-golang v1.13.1
-	github.com/sagernet/sing v0.7.5
-	github.com/sagernet/sing-box v1.12.1
+	github.com/sagernet/gomobile v0.0.0-20250115052251-5e7e45ba5edd
+	github.com/sagernet/libv2ray-lite v0.0.0-20240111202801-b825e1ccfc83
+	github.com/sagernet/sing-box v1.11.0-rc.1.0.20250503064040-b75b0b79c7d3
 	github.com/sagernet/sing-dns v0.4.1
 	github.com/sagernet/sing-tun v0.7.0-beta.1
+	github.com/sirupsen/logrus v1.9.3
 	github.com/ulikunitz/xz v0.5.11
-	golang.org/x/mobile v0.0.0-20231108233038-35478a0c49da
+	golang.org/x/mobile v0.0.0-20240404231514-09dbf07665ed
+	golang.org/x/net v0.31.0
 	golang.org/x/sys v0.34.0
 )
 
@@ -85,7 +90,6 @@ require (
 	github.com/sagernet/sing-quic v0.5.0-beta.3 // indirect
 	github.com/sagernet/sing-shadowsocks v0.2.8 // indirect
 	github.com/sagernet/sing-shadowsocks2 v0.2.1 // indirect
-	github.com/sagernet/sing-shadowtls v0.2.1-0.20250503051639-fcd445d33c11 // indirect
 	github.com/sagernet/sing-vmess v0.2.6 // indirect
 	github.com/sagernet/smux v1.5.34-mod.2 // indirect
 	github.com/sagernet/tailscale v1.80.3-mod.5 // indirect

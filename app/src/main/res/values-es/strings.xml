@@ -285,7 +285,7 @@
     <string name="probe_interval">Intervalo de observación del equilibrador</string> 
     <string name="standard">Estándar</string> 
     <string name="v2rayn" translatable="false">V2RayN</string> 
-    <string name="available" translatable="false">%dms</string> 
+    <string name="available" translatable="false">%.1fms</string> 
     <string name="unavailable">No disponible</string> 
     <string name="always_show_address">Mostrar siempre la dirección</string> 
     <string name="always_show_address_sum">Muestra siempre la dirección del servidor en la tarjeta de configuración</string> 

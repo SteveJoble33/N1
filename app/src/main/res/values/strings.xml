@@ -78,8 +78,8 @@
     <string name="speed_detail">Proxy： %1$s↑ %2$s↓\nDirect： %3$s↑ %4$s↓</string>
     <string name="speed">%s/s</string>
     <string name="connection_test_testing">Testing…</string>
-    <string name="connection_test_available">Success: HTTPS handshake took %dms</string>
-    <string name="connection_test_available_http">Success: HTTP handshake took %dms</string>
+    <string name="connection_test_available">Success: HTTPS handshake took %.1fms</string>
+    <string name="connection_test_available_http">Success: HTTP handshake took %.1fms</string>
     <string name="connection_test_error">Failed: %s</string>
     <string name="connection_test_fail">Internet Unavailable</string>
     <string name="connection_test_error_status_code">Error code: #%d</string>
@@ -316,7 +316,7 @@
     <string name="probe_interval">Balancer observation interval</string>
     <string name="standard">Standard</string>
     <string name="v2rayn" translatable="false">V2RayN</string>
-    <string name="available" translatable="false">%dms</string>
+    <string name="available" translatable="false">%.1fms</string>
     <string name="unavailable">Unavailable</string>
     <string name="always_show_address">Always Show Address</string>
     <string name="always_show_address_sum">Always display the server address on the configuration
