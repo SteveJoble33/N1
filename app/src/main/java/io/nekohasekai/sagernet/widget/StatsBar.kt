@@ -137,7 +137,7 @@ class StatsBar @JvmOverloads constructor(
                                 R.string.connection_test_available
                             } else {
                                 R.string.connection_test_available_http
-                            }, elapsed
+                            }, elapsed.toFloat()
                         )
                     )
                 }

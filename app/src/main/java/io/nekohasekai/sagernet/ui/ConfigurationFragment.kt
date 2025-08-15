@@ -635,7 +635,7 @@ class ConfigurationFragment @JvmOverloads constructor(
                     }
 
                     1 -> {
-                        profileStatusText = getString(R.string.available, profile.ping)
+                        profileStatusText = getString(R.string.available, profile.ping.toFloat())
                         profileStatusColor = context.getColour(R.color.material_green_500)
                     }
 
@@ -1558,7 +1558,7 @@ class ConfigurationFragment @JvmOverloads constructor(
                         profileStatus.text = ""
                     }
                 } else if (proxyEntity.status == 1) {
-                    profileStatus.text = getString(R.string.available, proxyEntity.ping)
+                    profileStatus.text = getString(R.string.available, proxyEntity.ping.toFloat())
                     profileStatus.setTextColor(requireContext().getColour(R.color.material_green_500))
                 } else {
                     profileStatus.setTextColor(requireContext().getColour(R.color.material_red_500))
