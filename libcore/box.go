@@ -20,6 +20,7 @@ import (
 	box "github.com/sagernet/sing-box"
 	"github.com/sagernet/sing-box/common/conntrack"
 	"github.com/sagernet/sing-box/constant"
+	"github.com/sagernet/sing-box/include"
 	"github.com/sagernet/sing-box/option"
 	"github.com/sagernet/sing/service"
 	"github.com/sagernet/sing/service/pause"
@@ -78,6 +79,18 @@ func NewSingBoxInstance(config string) (b *BoxInstance, err error) {
 	ctx, cancel := context.WithCancel(context.Background())
 	ctx = service.ContextWithDefaultRegistry(ctx)
 	service.MustRegister[platform.Interface](ctx, boxPlatformInterfaceInstance)
+
+	// inject registries before decoding options
+	{
+		inboundReg := nekoboxAndroidInboundRegistry()
+		outboundReg := nekoboxAndroidOutboundRegistry()
+		endpointReg := nekoboxAndroidEndpointRegistry()
+		dnsReg := include.DNSTransportRegistry()
+		service.MustRegister[option.InboundOptionsRegistry](ctx, inboundReg)
+		service.MustRegister[option.OutboundOptionsRegistry](ctx, outboundReg)
+		service.MustRegister[option.EndpointOptionsRegistry](ctx, endpointReg)
+		service.MustRegister[option.DNSTransportOptionsRegistry](ctx, dnsReg)
+	}
 
 	// parse options
 	var options option.Options
