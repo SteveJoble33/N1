@@ -75,6 +75,12 @@
         app:showAsAction="always">
         <menu>
             <item
+                android:id="@+id/action_auto_import"
+                android:title="@string/auto_import_configs" />
+            <item
+                android:id="@+id/action_cleanup_bad_configs"
+                android:title="@string/cleanup_bad_configs" />
+            <item
                 android:id="@+id/action_update_subscription"
                 android:title="@string/update_current_subscription" />
             <item

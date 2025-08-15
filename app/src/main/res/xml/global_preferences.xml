@@ -239,5 +239,8 @@
         <SwitchPreference
             app:key="showBottomBar"
             app:title="@string/show_bottom_bar" />
+        <SwitchPreference
+            app:key="udpFragment"
+            app:title="@string/udp_fragment" />
     </PreferenceCategory>
 </PreferenceScreen>
