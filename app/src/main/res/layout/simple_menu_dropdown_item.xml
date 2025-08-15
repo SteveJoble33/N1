@@ -18,8 +18,9 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:ellipsize="marquee"
-    android:gravity="center"
+    android:gravity="center_vertical|start"
     android:minWidth="112dp"
     android:paddingEnd="16dp"
     android:paddingStart="16dp"
+    android:textAppearance="@android:style/TextAppearance.Material.Subhead"
     android:singleLine="true" />
